@@ -197,7 +197,7 @@ function VehicleDetail() {
           <Reveal delay={0.1}>
             <h2 className="text-2xl font-semibold">Équipements</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {vehicle.features.map((f) => (
+              {vehicle.features.map((f: string) => (
                 <li key={f} className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Check className="size-4 shrink-0 text-primary" />
                   {f}
