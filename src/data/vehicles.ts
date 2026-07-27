@@ -79,7 +79,7 @@ export const vehicles: Vehicle[] = [
     location: "Bamako, Sotuba",
     history: "Révision complète effectuée",
     description:
-      "Un utilitaire полyvalent taillé pour les chantiers et les longues distances, avec un confort de berline.",
+      "Un utilitaire polyvalent taillé pour les chantiers et les longues distances, avec un confort de berline.",
     features: ["4x4 enclenchable", "Barres de toit", "Attelage", "Climatisation"],
   },
   {
