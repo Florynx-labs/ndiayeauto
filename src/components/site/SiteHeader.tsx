@@ -32,7 +32,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 md:px-10 lg:grid-cols-[auto_1fr_auto]">
         <Link to="/" className="flex min-w-0 items-center" aria-label="NDIAYE AUTO SERVICE — Accueil">
-          <img src={logo.url} alt="NDIAYE AUTO SERVICE" className="h-11 w-auto md:h-12" />
+          <img src={logo.url} alt="NDIAYE AUTO SERVICE" className="h-14 w-auto md:h-16" />
         </Link>
 
         <nav className="hidden items-center justify-center gap-9 lg:flex">

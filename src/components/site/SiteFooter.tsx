@@ -12,7 +12,7 @@ export function SiteFooter() {
           <img
             src={logo.url}
             alt="NDIAYE AUTO SERVICE"
-            className="h-16 w-auto"
+            className="h-24 w-auto"
             loading="lazy"
           />
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
