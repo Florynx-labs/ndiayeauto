@@ -160,6 +160,7 @@ export const formatPrice = (value: number) =>
 export const formatMileage = (value: number) =>
   new Intl.NumberFormat("fr-FR").format(value) + " km";
 
-export const WHATSAPP_URL = "https://wa.me/22376000000";
-export const PHONE = "+223 76 00 00 00";
-export const EMAIL = "contact@ndiayeautoservice.ml";
+export const WHATSAPP_URL = "https://wa.me/22372725912";
+export const PHONE = "+223 72 72 59 12";
+export const TIKTOK_URL = "https://www.tiktok.com/@ndiayeauto2";
+export const ADDRESS = "Korofina Sud — en face de la station SOMAYAF, Bamako, Mali";
