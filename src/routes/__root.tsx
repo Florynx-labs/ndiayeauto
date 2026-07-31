@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
     scripts: [
       {
@@ -112,12 +112,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "NDIAYE AUTO SERVICE",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Route de Sotuba, ACI 2000",
+            streetAddress: "Korofina Sud, en face de la station SOMAYAF",
             addressLocality: "Bamako",
             addressCountry: "ML",
           },
-          telephone: "+223 76 00 00 00",
+          telephone: "+223 72 72 59 12",
           areaServed: "Mali",
+          sameAs: ["https://www.tiktok.com/@ndiayeauto2"],
         }),
       },
     ],

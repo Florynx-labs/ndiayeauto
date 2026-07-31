@@ -38,7 +38,7 @@ export const vehicles: Vehicle[] = [
     image: car1,
     popularity: 98,
     engine: "4.5L V8 Turbo Diesel — 272 ch",
-    location: "Bamako, ACI 2000",
+    location: "Bamako, Korofina Sud",
     history: "Première main, carnet d'entretien complet",
     description:
       "Le SUV de référence pour les routes maliennes. Robustesse légendaire, confort haut de gamme et fiabilité éprouvée.",
@@ -76,7 +76,7 @@ export const vehicles: Vehicle[] = [
     image: car3,
     popularity: 84,
     engine: "2.5L dCi — 190 ch",
-    location: "Bamako, Sotuba",
+    location: "Bamako, Korofina Sud",
     history: "Révision complète effectuée",
     description:
       "Un utilitaire polyvalent taillé pour les chantiers et les longues distances, avec un confort de berline.",
@@ -95,7 +95,7 @@ export const vehicles: Vehicle[] = [
     image: car4,
     popularity: 95,
     engine: "3.0L 6 cylindres — 340 ch",
-    location: "Bamako, ACI 2000",
+    location: "Bamako, Korofina Sud",
     history: "Historique constructeur disponible",
     description:
       "Sportivité et prestige réunis. Le X5 offre une conduite dynamique sans compromis sur le confort.",
@@ -133,7 +133,7 @@ export const vehicles: Vehicle[] = [
     image: car6,
     popularity: 68,
     engine: "2.2L HDi — 140 ch",
-    location: "Bamako, Sotuba",
+    location: "Bamako, Korofina Sud",
     history: "Ancien véhicule de société, entretien suivi",
     description:
       "Un volume de chargement généreux pour les professionnels exigeants, prêt à travailler.",
@@ -160,6 +160,7 @@ export const formatPrice = (value: number) =>
 export const formatMileage = (value: number) =>
   new Intl.NumberFormat("fr-FR").format(value) + " km";
 
-export const WHATSAPP_URL = "https://wa.me/22376000000";
-export const PHONE = "+223 76 00 00 00";
-export const EMAIL = "contact@ndiayeautoservice.ml";
+export const WHATSAPP_URL = "https://wa.me/22372725912";
+export const PHONE = "+223 72 72 59 12";
+export const TIKTOK_URL = "https://www.tiktok.com/@ndiayeauto2";
+export const ADDRESS = "Korofina Sud — en face de la station SOMAYAF, Bamako, Mali";

@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { MapPin, MessageCircle, Phone } from "lucide-react";
 import { Reveal } from "@/components/site/Reveal";
-import { EMAIL, PHONE, WHATSAPP_URL } from "@/data/vehicles";
+import { TikTokIcon } from "@/components/site/TikTokIcon";
+import { ADDRESS, PHONE, TIKTOK_URL, WHATSAPP_URL } from "@/data/vehicles";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -10,12 +11,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contactez NDIAYE AUTO SERVICE à Bamako : discutez directement sur WhatsApp, par téléphone ou par e-mail.",
+          "Contactez NDIAYE AUTO SERVICE à Korofina Sud, Bamako : discutez directement sur WhatsApp ou par téléphone.",
       },
       { property: "og:title", content: "Contact — NDIAYE AUTO SERVICE Bamako" },
       {
         property: "og:description",
-        content: "Discutez avec nous sur WhatsApp, par téléphone ou par e-mail.",
+        content: "Discutez avec nous sur WhatsApp ou par téléphone au +223 72 72 59 12.",
       },
       { property: "og:url", content: "/contact" },
     ],
@@ -61,7 +62,7 @@ function ContactPage() {
             <div className="overflow-hidden rounded-[18px] border border-border">
               <iframe
                 title="Localisation de NDIAYE AUTO SERVICE à Bamako"
-                src="https://www.google.com/maps?q=Bamako,Mali&output=embed"
+                src="https://www.google.com/maps?q=Korofina+Sud+Station+SOMAYAF+Bamako+Mali&output=embed"
                 loading="lazy"
                 className="h-80 w-full border-0"
               />
@@ -69,7 +70,7 @@ function ContactPage() {
             <ul className="grid gap-3 text-sm">
               <li className="flex items-start gap-3 rounded-[18px] border border-border bg-card p-5">
                 <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                Route de Sotuba, ACI 2000 — Bamako, Mali
+                {ADDRESS}
               </li>
               <li className="flex items-center gap-3 rounded-[18px] border border-border bg-card p-5">
                 <Phone className="size-4 shrink-0 text-primary" />
@@ -83,18 +84,16 @@ function ContactPage() {
                   Discuter sur WhatsApp
                 </a>
               </li>
-              <li className="flex items-center gap-3 rounded-[18px] border border-border bg-card p-5">
-                <Mail className="size-4 shrink-0 text-primary" />
-                <a href={`mailto:${EMAIL}`} className="hover:text-primary">
-                  {EMAIL}
-                </a>
-              </li>
               <li className="flex items-center gap-4 rounded-[18px] border border-border bg-card p-5">
-                <a href="https://facebook.com" aria-label="Facebook" className="text-muted-foreground hover:text-primary">
-                  <Facebook className="size-5" />
-                </a>
-                <a href="https://instagram.com" aria-label="Instagram" className="text-muted-foreground hover:text-primary">
-                  <Instagram className="size-5" />
+                <a
+                  href={TIKTOK_URL}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="TikTok NDIAYE AUTO SERVICE"
+                  className="flex items-center gap-3 text-muted-foreground hover:text-primary"
+                >
+                  <TikTokIcon className="size-5" />
+                  @ndiayeauto2
                 </a>
               </li>
             </ul>

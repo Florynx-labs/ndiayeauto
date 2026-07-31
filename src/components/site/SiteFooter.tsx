@@ -1,45 +1,33 @@
 import { Link } from "@tanstack/react-router";
-import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { EMAIL, PHONE, WHATSAPP_URL } from "@/data/vehicles";
+import { MapPin, MessageCircle, Phone } from "lucide-react";
+import { ADDRESS, PHONE, TIKTOK_URL, WHATSAPP_URL } from "@/data/vehicles";
+import { TikTokIcon } from "@/components/site/TikTokIcon";
+import logo from "@/assets/ndiaye-logo.png.asset.json";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 md:px-10 lg:grid-cols-4">
         <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <span className="grid size-9 place-items-center rounded-xl bg-primary font-display text-sm font-bold text-primary-foreground">
-              N
-            </span>
-            <span className="font-display text-sm font-semibold tracking-[0.18em] uppercase">
-              Ndiaye Auto
-            </span>
-          </div>
+          <img
+            src={logo.url}
+            alt="NDIAYE AUTO SERVICE"
+            className="h-24 w-auto"
+            loading="lazy"
+          />
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
             Vente de véhicules neufs, d'occasion et sur commande à Bamako. Sélection rigoureuse,
             documents en règle, accompagnement complet.
           </p>
           <div className="flex gap-2">
             <a
-              href="https://facebook.com"
-              aria-label="Facebook"
+              href={TIKTOK_URL}
+              target="_blank"
+              rel="noopener"
+              aria-label="TikTok"
               className="grid size-11 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
             >
-              <Facebook className="size-4" />
-            </a>
-            <a
-              href="https://instagram.com"
-              aria-label="Instagram"
-              className="grid size-11 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
-            >
-              <Instagram className="size-4" />
-            </a>
-            <a
-              href={WHATSAPP_URL}
-              aria-label="WhatsApp"
-              className="grid size-11 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary hover:text-foreground"
-            >
-              <MessageCircle className="size-4" />
+              <TikTokIcon className="size-4" />
             </a>
           </div>
         </div>
@@ -72,7 +60,7 @@ export function SiteFooter() {
           <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 size-4 shrink-0" />
-              Route de Sotuba, ACI 2000 — Bamako, Mali
+              {ADDRESS}
             </li>
             <li className="flex items-center gap-2">
               <Phone className="size-4 shrink-0" />
@@ -81,9 +69,9 @@ export function SiteFooter() {
               </a>
             </li>
             <li className="flex items-center gap-2">
-              <Mail className="size-4 shrink-0" />
-              <a href={`mailto:${EMAIL}`} className="hover:text-foreground">
-                {EMAIL}
+              <MessageCircle className="size-4 shrink-0" />
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener" className="hover:text-foreground">
+                WhatsApp {PHONE}
               </a>
             </li>
           </ul>
