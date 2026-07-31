@@ -1,9 +1,5 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { createFileRoute } from "@tanstack/react-router";
 import { Facebook, Instagram, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Reveal } from "@/components/site/Reveal";
 import { EMAIL, PHONE, WHATSAPP_URL } from "@/data/vehicles";
 
@@ -14,12 +10,12 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contactez NDIAYE AUTO SERVICE à Bamako : téléphone, WhatsApp, e-mail et formulaire de demande d'importation.",
+          "Contactez NDIAYE AUTO SERVICE à Bamako : discutez directement sur WhatsApp, par téléphone ou par e-mail.",
       },
       { property: "og:title", content: "Contact — NDIAYE AUTO SERVICE Bamako" },
       {
         property: "og:description",
-        content: "Téléphone, WhatsApp, e-mail et formulaire de demande.",
+        content: "Discutez avec nous sur WhatsApp, par téléphone ou par e-mail.",
       },
       { property: "og:url", content: "/contact" },
     ],
@@ -28,34 +24,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const schema = z.object({
-  name: z.string().trim().min(2, "Votre nom est requis").max(100),
-  email: z.string().trim().email("Adresse e-mail invalide").max(255),
-  phone: z.string().trim().min(6, "Numéro invalide").max(30),
-  message: z.string().trim().min(10, "Décrivez votre demande").max(1000),
-});
-
-type FormValues = z.infer<typeof schema>;
-
 function ContactPage() {
-  const [sent, setSent] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<FormValues>({ resolver: zodResolver(schema) });
-
-  const inputClass =
-    "w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none";
-
-  const onSubmit = (values: FormValues) => {
-    const text = `Bonjour, je suis ${values.name} (${values.phone}). ${values.message}`;
-    window.open(`${WHATSAPP_URL}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
-    setSent(true);
-    reset();
-  };
-
   return (
     <div className="pt-32 pb-24">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10">
@@ -69,58 +38,23 @@ function ContactPage() {
 
         <div className="mt-14 grid gap-8 lg:grid-cols-[1fr_1fr]">
           <Reveal>
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="space-y-5 rounded-[18px] border border-border bg-card p-8"
-              noValidate
-            >
-              <div>
-                <label htmlFor="name" className="mb-2 block text-xs text-muted-foreground">
-                  Nom complet
-                </label>
-                <input id="name" className={inputClass} placeholder="Votre nom" {...register("name")} />
-                {errors.name && <p className="mt-2 text-xs text-primary">{errors.name.message}</p>}
-              </div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="email" className="mb-2 block text-xs text-muted-foreground">
-                    E-mail
-                  </label>
-                  <input id="email" type="email" className={inputClass} placeholder="vous@email.com" {...register("email")} />
-                  {errors.email && <p className="mt-2 text-xs text-primary">{errors.email.message}</p>}
-                </div>
-                <div>
-                  <label htmlFor="phone" className="mb-2 block text-xs text-muted-foreground">
-                    Téléphone
-                  </label>
-                  <input id="phone" className={inputClass} placeholder="+223 …" {...register("phone")} />
-                  {errors.phone && <p className="mt-2 text-xs text-primary">{errors.phone.message}</p>}
-                </div>
-              </div>
-              <div>
-                <label htmlFor="message" className="mb-2 block text-xs text-muted-foreground">
-                  Votre demande
-                </label>
-                <textarea
-                  id="message"
-                  rows={5}
-                  className={inputClass}
-                  placeholder="Modèle recherché, budget, délais…"
-                  {...register("message")}
-                />
-                {errors.message && <p className="mt-2 text-xs text-primary">{errors.message.message}</p>}
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full rounded-full bg-primary px-6 py-3.5 text-sm font-medium text-primary-foreground transition-all hover:shadow-glow disabled:opacity-60"
-              >
-                Envoyer ma demande
-              </button>
-              <p aria-live="polite" className="min-h-5 text-xs text-muted-foreground">
-                {sent ? "Merci ! Votre demande a été préparée sur WhatsApp." : ""}
+            <div className="flex h-full flex-col justify-center rounded-[18px] border border-border bg-card p-10 text-center">
+              <MessageCircle className="mx-auto size-8 text-primary" />
+              <h2 className="mt-6 text-2xl font-semibold sm:text-3xl">Discutons sur WhatsApp</h2>
+              <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
+                Le plus simple et le plus rapide : envoyez-nous un message et parlez directement à
+                un conseiller NDIAYE AUTO SERVICE.
               </p>
-            </form>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener"
+                className="mx-auto mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-all hover:shadow-glow"
+              >
+                <MessageCircle className="size-4" />
+                Écrire sur WhatsApp
+              </a>
+            </div>
           </Reveal>
 
           <Reveal delay={0.1} className="space-y-6">
