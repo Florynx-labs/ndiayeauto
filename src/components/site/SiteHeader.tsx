@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import logo from "@/assets/ndiaye-logo.png.asset.json";
+
 
 const links = [
   { to: "/", label: "Accueil" },
@@ -24,15 +24,15 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "border-b border-border bg-background/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
+        ? "border-b border-border bg-background/85 backdrop-blur-xl"
+        : "border-b border-transparent bg-transparent"
+        }`}
     >
       <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 md:px-10 lg:grid-cols-[auto_1fr_auto]">
-        <Link to="/" className="flex min-w-0 items-center" aria-label="NDIAYE AUTO SERVICE — Accueil">
-          <img src={logo.url} alt="NDIAYE AUTO SERVICE" className="h-14 w-auto md:h-16" />
+        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="NDIAYE AUTO SERVICE — Accueil">
+
+          <img src="/car.png" alt="NDIAYE AUTO" className="h-10 w-auto object-contain md:h-12" />
         </Link>
 
         <nav className="hidden items-center justify-center gap-9 lg:flex">

@@ -95,18 +95,7 @@ const faqs = [
     q: "Puis-je commander un véhicule qui n'est pas au catalogue ?",
     a: "Oui. Indiquez-nous le modèle, l'année, le budget et les options souhaitées : nous recherchons le véhicule et vous transmettons une offre complète, dédouanement inclus.",
   },
-  {
-    q: "Les véhicules sont-ils dédouanés ?",
-    a: "Tous les véhicules présentés en stock à Bamako sont dédouanés et prêts à être immatriculés. Pour les commandes, le dédouanement est intégré au devis.",
-  },
-  {
-    q: "Proposez-vous un financement ?",
-    a: "Nous travaillons avec plusieurs partenaires bancaires et de leasing au Mali pour vous proposer un plan de financement adapté.",
-  },
-  {
-    q: "Quels sont les délais d'importation ?",
-    a: "Comptez en moyenne 4 à 8 semaines selon la provenance du véhicule et le mode de transport choisi.",
-  },
+
 ];
 
 function Index() {

@@ -2,19 +2,20 @@ import { Link } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Phone } from "lucide-react";
 import { ADDRESS, PHONE, TIKTOK_URL, WHATSAPP_URL } from "@/data/vehicles";
 import { TikTokIcon } from "@/components/site/TikTokIcon";
-import logo from "@/assets/ndiaye-logo.png.asset.json";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 md:px-10 lg:grid-cols-4">
         <div className="space-y-4">
-          <img
-            src={logo.url}
-            alt="NDIAYE AUTO SERVICE"
-            className="h-24 w-auto"
-            loading="lazy"
-          />
+          <div className="flex items-center gap-3">
+            <img
+              src="/car.png"
+              alt="NDIAYE AUTO"
+              className="h-14 w-auto object-contain"
+              loading="lazy"
+            />
+          </div>
           <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
             Vente de véhicules neufs, d'occasion et sur commande à Bamako. Sélection rigoureuse,
             documents en règle, accompagnement complet.

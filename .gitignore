@@ -1,4 +1,4 @@
-# Logs
+# Logs & Caches
 logs
 *.log
 npm-debug.log*
@@ -7,24 +7,36 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-.output
-.vinxi
-.tanstack/**
-.nitro
+# Dependencies
+node_modules/
+
+# Build & Deployment Outputs
+dist/
+dist-ssr/
+.output/
+.vercel/
+.vinxi/
+.tanstack/
+.nitro/
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 *.local
 
-# Wrangler / Cloudflare
+# Cloudflare / Wrangler
 .wrangler/
 .dev.vars
 
-# Editor directories and files
+# Editor & OS files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
