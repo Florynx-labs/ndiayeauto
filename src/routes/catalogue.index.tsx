@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Search, SlidersHorizontal } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { VehicleCard } from "@/components/site/VehicleCard";
-import { brands, vehicles, type Vehicle } from "@/data/vehicles";
+import { brands, type Vehicle } from "@/data/vehicles";
+import { getPublicVehicles } from "@/lib/vehicles.server";
 
 export const Route = createFileRoute("/catalogue/")({
   head: () => ({
@@ -23,6 +24,7 @@ export const Route = createFileRoute("/catalogue/")({
     ],
     links: [{ rel: "canonical", href: "/catalogue" }],
   }),
+  loader: () => getPublicVehicles(),
   component: CataloguePage,
 });
 
@@ -34,6 +36,7 @@ const PER_PAGE = 6;
 type Sort = "recent" | "price-asc" | "price-desc" | "popular";
 
 function CataloguePage() {
+  const vehicles = Route.useLoaderData();
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState("");
   const [body, setBody] = useState("");
@@ -45,6 +48,8 @@ function CataloguePage() {
   const [sort, setSort] = useState<Sort>("recent");
   const [page, setPage] = useState(1);
   const [favorites, setFavorites] = useState<string[]>([]);
+  useEffect(() => { try { setFavorites(JSON.parse(localStorage.getItem("ndiaye-auto:favorites") || "[]")); } catch { setFavorites([]); } }, []);
+  useEffect(() => { localStorage.setItem("ndiaye-auto:favorites", JSON.stringify(favorites)); }, [favorites]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
