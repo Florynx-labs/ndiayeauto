@@ -1,0 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { UTApi } from "uploadthing/server";
+import { auth } from "@/lib/auth";
+const utapi=new UTApi();
+export const Route=createFileRoute("/api/admin/upload")({server:{handlers:{POST:async({request})=>{const s=await auth.api.getSession({headers:request.headers});if(s?.user.role!=="admin")return Response.json({error:"Non autorisé."},{status:401});const file=(await request.formData()).get("file");if(!(file instanceof File)||!["image/jpeg","image/png","image/webp","image/avif"].includes(file.type)||file.size>5*1024*1024)return Response.json({error:"Image invalide (5 Mo max, JPEG/PNG/WebP/AVIF). "},{status:400});const result=await utapi.uploadFiles(file);if(result.error||!result.data)return Response.json({error:"UploadThing indisponible."},{status:502});return Response.json({url:result.data.url,key:result.data.key});}}}});
