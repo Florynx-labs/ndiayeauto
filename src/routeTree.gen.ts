@@ -15,8 +15,15 @@ import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as ApiNewsletterRouteImport } from './routes/api/newsletter'
 import { Route as CatalogueIndexRouteImport } from './routes/catalogue.index'
 import { Route as CatalogueVehicleIdRouteImport } from './routes/catalogue.$vehicleId'
+import { Route as AdminVehiclesNewRouteImport } from './routes/admin/vehicles/new'
+import { Route as ApiAdminSplatRouteImport } from './routes/api/admin/$'
+import { Route as ApiAdminUploadRouteImport } from './routes/api/admin/upload'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,6 +55,21 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNewsletterRoute = ApiNewsletterRouteImport.update({
+  id: '/api/newsletter',
+  path: '/api/newsletter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CatalogueIndexRoute = CatalogueIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -58,6 +80,26 @@ const CatalogueVehicleIdRoute = CatalogueVehicleIdRouteImport.update({
   path: '/$vehicleId',
   getParentRoute: () => CatalogueRoute,
 } as any)
+const AdminVehiclesNewRoute = AdminVehiclesNewRouteImport.update({
+  id: '/admin/vehicles/new',
+  path: '/admin/vehicles/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminSplatRoute = ApiAdminSplatRouteImport.update({
+  id: '/api/admin/$',
+  path: '/api/admin/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAdminUploadRoute = ApiAdminUploadRouteImport.update({
+  id: '/api/admin/upload',
+  path: '/api/admin/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,8 +108,15 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/newsletter': typeof ApiNewsletterRoute
   '/catalogue/$vehicleId': typeof CatalogueVehicleIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/catalogue/': typeof CatalogueIndexRoute
+  '/admin/vehicles/new': typeof AdminVehiclesNewRoute
+  '/api/admin/$': typeof ApiAdminSplatRoute
+  '/api/admin/upload': typeof ApiAdminUploadRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -75,8 +124,15 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/newsletter': typeof ApiNewsletterRoute
   '/catalogue/$vehicleId': typeof CatalogueVehicleIdRoute
+  '/admin': typeof AdminIndexRoute
   '/catalogue': typeof CatalogueIndexRoute
+  '/admin/vehicles/new': typeof AdminVehiclesNewRoute
+  '/api/admin/$': typeof ApiAdminSplatRoute
+  '/api/admin/upload': typeof ApiAdminUploadRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -86,8 +142,15 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/newsletter': typeof ApiNewsletterRoute
   '/catalogue/$vehicleId': typeof CatalogueVehicleIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/catalogue/': typeof CatalogueIndexRoute
+  '/admin/vehicles/new': typeof AdminVehiclesNewRoute
+  '/api/admin/$': typeof ApiAdminSplatRoute
+  '/api/admin/upload': typeof ApiAdminUploadRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -98,8 +161,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/login'
+    | '/api/newsletter'
     | '/catalogue/$vehicleId'
+    | '/admin/'
     | '/catalogue/'
+    | '/admin/vehicles/new'
+    | '/api/admin/$'
+    | '/api/admin/upload'
+    | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -107,8 +177,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/login'
+    | '/api/newsletter'
     | '/catalogue/$vehicleId'
+    | '/admin'
     | '/catalogue'
+    | '/admin/vehicles/new'
+    | '/api/admin/$'
+    | '/api/admin/upload'
+    | '/api/auth/$'
   id:
     | '__root__'
     | '/'
@@ -117,8 +194,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/sitemap.xml'
+    | '/admin/login'
+    | '/api/newsletter'
     | '/catalogue/$vehicleId'
+    | '/admin/'
     | '/catalogue/'
+    | '/admin/vehicles/new'
+    | '/api/admin/$'
+    | '/api/admin/upload'
+    | '/api/auth/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,6 +212,13 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  ApiNewsletterRoute: typeof ApiNewsletterRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  AdminVehiclesNewRoute: typeof AdminVehiclesNewRoute
+  ApiAdminSplatRoute: typeof ApiAdminSplatRoute
+  ApiAdminUploadRoute: typeof ApiAdminUploadRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -174,6 +265,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/newsletter': {
+      id: '/api/newsletter'
+      path: '/api/newsletter'
+      fullPath: '/api/newsletter'
+      preLoaderRoute: typeof ApiNewsletterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/catalogue/': {
       id: '/catalogue/'
       path: '/'
@@ -187,6 +299,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/catalogue/$vehicleId'
       preLoaderRoute: typeof CatalogueVehicleIdRouteImport
       parentRoute: typeof CatalogueRoute
+    }
+    '/admin/vehicles/new': {
+      id: '/admin/vehicles/new'
+      path: '/admin/vehicles/new'
+      fullPath: '/admin/vehicles/new'
+      preLoaderRoute: typeof AdminVehiclesNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/$': {
+      id: '/api/admin/$'
+      path: '/api/admin/$'
+      fullPath: '/api/admin/$'
+      preLoaderRoute: typeof ApiAdminSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/admin/upload': {
+      id: '/api/admin/upload'
+      path: '/api/admin/upload'
+      fullPath: '/api/admin/upload'
+      preLoaderRoute: typeof ApiAdminUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -212,6 +352,13 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  ApiNewsletterRoute: ApiNewsletterRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  AdminVehiclesNewRoute: AdminVehiclesNewRoute,
+  ApiAdminSplatRoute: ApiAdminSplatRoute,
+  ApiAdminUploadRoute: ApiAdminUploadRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
