@@ -228,13 +228,29 @@ function Index() {
             </Link>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {vehicles.slice(0, 6).map((v, i) => (
-              <Reveal key={v.id} delay={i * 0.08}>
-                <VehicleCard vehicle={v} />
-              </Reveal>
-            ))}
-          </div>
+          {vehicles.length > 0 ? (
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {vehicles.slice(0, 6).map((v, i) => (
+                <Reveal key={v.id} delay={i * 0.08}>
+                  <VehicleCard vehicle={v} />
+                </Reveal>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 rounded-2xl border border-border bg-card px-6 py-14 text-center">
+              <p className="text-lg font-semibold">Aucune voiture disponible pour le moment</p>
+              <p className="mx-auto mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
+                Notre stock est actuellement vide. Revenez bientôt ou contactez notre équipe pour
+                nous faire part du véhicule que vous recherchez.
+              </p>
+              <Link
+                to="/contact"
+                className="mt-6 inline-flex rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                Contacter notre équipe
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
