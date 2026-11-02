@@ -3,8 +3,8 @@ import { Heart, Search, SlidersHorizontal } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { VehicleCard } from "@/components/site/VehicleCard";
-import { brands, type Vehicle } from "@/data/vehicles";
-import { getPublicVehicles } from "@/lib/vehicles.server";
+import { type Vehicle } from "@/data/vehicles";
+import { getPublicBrands, getPublicVehicles } from "@/lib/vehicles.server";
 
 export const Route = createFileRoute("/catalogue/")({
   head: () => ({
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/catalogue/")({
     ],
     links: [{ rel: "canonical", href: "/catalogue" }],
   }),
-  loader: () => getPublicVehicles(),
+  loader: async () => ({ vehicles: await getPublicVehicles(), brands: await getPublicBrands() }),
   component: CataloguePage,
 });
 
@@ -36,7 +36,7 @@ const PER_PAGE = 6;
 type Sort = "recent" | "price-asc" | "price-desc" | "popular";
 
 function CataloguePage() {
-  const vehicles = Route.useLoaderData();
+  const { vehicles, brands } = Route.useLoaderData();
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState("");
   const [body, setBody] = useState("");
