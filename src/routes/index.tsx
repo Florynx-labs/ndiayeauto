@@ -22,8 +22,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { brands, WHATSAPP_URL } from "@/data/vehicles";
-import { getPublicVehicles } from "@/lib/vehicles.server";
+import { WHATSAPP_URL } from "@/data/vehicles";
+import { getPublicBrands, getPublicVehicles } from "@/lib/vehicles.server";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -44,7 +44,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
-  loader: () => getPublicVehicles(),
+  loader: async () => ({ vehicles: await getPublicVehicles(), brands: await getPublicBrands() }),
   component: Index,
 });
 
@@ -101,7 +101,7 @@ const faqs = [
 ];
 
 function Index() {
-  const vehicles = Route.useLoaderData();
+  const { vehicles, brands } = Route.useLoaderData();
   const prefersReduced = useReducedMotion();
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 600], [0, prefersReduced ? 0 : 90]);
