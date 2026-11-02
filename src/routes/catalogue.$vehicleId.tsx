@@ -25,7 +25,7 @@ export const Route = createFileRoute("/catalogue/$vehicleId")({
     const vehicles = await getPublicVehicles();
     const vehicle = vehicles.find((v) => v.id === params.vehicleId);
     if (!vehicle) throw notFound();
-    return { vehicle };
+    return { vehicle, others: vehicles.filter((v) => v.id !== vehicle.id).slice(0, 3) };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) {
@@ -68,8 +68,7 @@ function VehicleNotFound() {
 }
 
 function VehicleDetail() {
-  const { vehicle } = Route.useLoaderData();
-  const others = [] as typeof vehicle[];
+  const { vehicle, others } = Route.useLoaderData();
 
   const specs = [
     { icon: Calendar, label: "Année", value: String(vehicle.year) },
