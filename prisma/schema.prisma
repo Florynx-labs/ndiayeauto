@@ -69,6 +69,13 @@ model Verification {
   @@map("verification")
 }
 
+model Brand {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  @@index([name])
+}
+
 model Vehicle {
   id           String   @id @default(cuid())
   slug         String   @unique
