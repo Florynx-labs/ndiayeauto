@@ -16,12 +16,13 @@ import {
   formatMileage,
   formatPrice,
   PHONE,
-  vehicles,
   WHATSAPP_URL,
 } from "@/data/vehicles";
+import { getPublicVehicles } from "@/lib/vehicles.server";
 
 export const Route = createFileRoute("/catalogue/$vehicleId")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
+    const vehicles = await getPublicVehicles();
     const vehicle = vehicles.find((v) => v.id === params.vehicleId);
     if (!vehicle) throw notFound();
     return { vehicle };
@@ -68,7 +69,7 @@ function VehicleNotFound() {
 
 function VehicleDetail() {
   const { vehicle } = Route.useLoaderData();
-  const others = vehicles.filter((v) => v.id !== vehicle.id).slice(0, 3);
+  const others = [] as typeof vehicle[];
 
   const specs = [
     { icon: Calendar, label: "Année", value: String(vehicle.year) },
