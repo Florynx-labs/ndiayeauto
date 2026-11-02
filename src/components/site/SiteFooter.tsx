@@ -2,8 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { MapPin, MessageCircle, Phone } from "lucide-react";
 import { ADDRESS, PHONE, TIKTOK_URL, WHATSAPP_URL } from "@/data/vehicles";
 import { TikTokIcon } from "@/components/site/TikTokIcon";
+import { useState } from "react";
 
 export function SiteFooter() {
+  const [newsletterStatus, setNewsletterStatus] = useState("");
   return (
     <footer className="border-t border-border bg-surface">
       <div className="mx-auto grid max-w-[1400px] gap-12 px-5 py-16 md:px-10 lg:grid-cols-4">
@@ -87,9 +89,14 @@ export function SiteFooter() {
           </p>
           <form
             className="mt-4 flex gap-2"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              (e.currentTarget as HTMLFormElement).reset();
+              const form = e.currentTarget;
+              const email = new FormData(form).get("email");
+              const response = await fetch("/api/newsletter", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+              const result = await response.json();
+              setNewsletterStatus(response.ok ? "Inscription confirmée." : result.error || "Inscription impossible.");
+              if (response.ok) form.reset();
             }}
           >
             <label htmlFor="newsletter-email" className="sr-only">
@@ -97,6 +104,7 @@ export function SiteFooter() {
             </label>
             <input
               id="newsletter-email"
+              name="email"
               type="email"
               required
               placeholder="votre@email.com"
@@ -109,6 +117,7 @@ export function SiteFooter() {
               OK
             </button>
           </form>
+          {newsletterStatus && <p role="status" className="mt-2 text-xs text-muted-foreground">{newsletterStatus}</p>}
         </div>
       </div>
 

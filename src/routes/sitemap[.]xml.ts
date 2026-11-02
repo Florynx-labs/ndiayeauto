@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { vehicles } from "@/data/vehicles";
+import { prisma } from "@/lib/prisma";
 
-// TODO: replace with your project URL once a project name or custom domain is set.
-const BASE_URL = "";
+const BASE_URL = process.env.SITE_URL || "https://ndiayeauto.vercel.app";
 
 interface SitemapEntry {
   path: string;
@@ -15,14 +15,16 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const databaseVehicles = process.env.DATABASE_URL ? await prisma.vehicle.findMany({ where: { status: { not: "SOLD" } }, select: { slug: true } }).catch(() => []) : [];
+        const vehicleSlugs = databaseVehicles.length ? databaseVehicles.map((vehicle) => vehicle.slug) : vehicles.map((vehicle) => vehicle.id);
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/catalogue", changefreq: "daily", priority: "0.9" },
           { path: "/services", changefreq: "monthly", priority: "0.7" },
           { path: "/a-propos", changefreq: "monthly", priority: "0.6" },
           { path: "/contact", changefreq: "monthly", priority: "0.7" },
-          ...vehicles.map((v) => ({
-            path: `/catalogue/${v.id}`,
+          ...vehicleSlugs.map((slug) => ({
+            path: `/catalogue/${slug}`,
             changefreq: "weekly" as const,
             priority: "0.8",
           })),
