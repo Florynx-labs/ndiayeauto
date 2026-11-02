@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { authClient } from "@/lib/auth-client";
 
 export const Route = createFileRoute("/admin/")({ component: Dashboard });
@@ -46,7 +46,7 @@ function Dashboard() {
     else setError("Suppression impossible.");
   }
 
-  async function addBrand(event: React.FormEvent<HTMLFormElement>) {
+  async function addBrand(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setBrandBusy(true);
     setError("");
