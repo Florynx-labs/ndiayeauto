@@ -1,12 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import imageCompression from "browser-image-compression";
 import { authClient } from "@/lib/auth-client";
 export const Route=createFileRoute("/admin/vehicles/new")({component:NewVehicle});
 const field="mt-2 w-full rounded-xl border border-border bg-background p-3 text-sm";
 function NewVehicle(){
  const nav=useNavigate(),{data:session,isPending}=authClient.useSession(),[images,setImages]=useState<string[]>([]),[features,setFeatures]=useState(""),[brands,setBrands]=useState<string[]>([]),[busy,setBusy]=useState(false),[uploading,setUploading]=useState(false),[error,setError]=useState("");
- useState(() => { fetch("/api/admin/brands").then(r=>r.json()).then(d=>setBrands(Array.isArray(d.brands)?d.brands:[])).catch(()=>setBrands([])); return null; });
+ useEffect(() => { fetch("/api/admin/brands").then(r=>r.json()).then(d=>setBrands(Array.isArray(d.brands)?d.brands:[])).catch(()=>setBrands([])); }, []);
  const [v,setV]=useState({name:"",brand:"Toyota",year:new Date().getFullYear(),mileage:0,fuel:"Diesel",transmission:"Automatique",price:0,body:"SUV",engine:"",location:"Bamako, Korofina Sud",history:"",description:"",status:"AVAILABLE"});
  const update=(key:string,value:string|number)=>setV(old=>({...old,[key]:value}));
  if(isPending)return <main className="p-10">Chargement…</main>;
