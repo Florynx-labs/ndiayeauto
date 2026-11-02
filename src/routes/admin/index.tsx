@@ -126,7 +126,7 @@ function Dashboard() {
                   <p className="text-sm text-muted-foreground">{vehicle.brand} · {vehicle.year} · {new Intl.NumberFormat("fr-FR").format(vehicle.price)} FCFA</p>
                   <span className="text-xs text-muted-foreground">{vehicle.status}</span>
                 </div>
-                <button onClick={() => void removeVehicle(vehicle.id)} className="rounded-full border border-border px-3 py-2 text-sm text-destructive">Supprimer</button>
+                <div className="flex items-center gap-2"><Link to="/admin/vehicles/$vehicleId" params={{ vehicleId: vehicle.id }} className="rounded-full border border-border px-3 py-2 text-sm hover:border-primary">Modifier</Link><button onClick={() => void removeVehicle(vehicle.id)} className="rounded-full border border-border px-3 py-2 text-sm text-destructive">Supprimer</button></div>
               </article>
             ))}
             {items.length === 0 && <p className="p-10 text-center text-sm text-muted-foreground">Aucun véhicule enregistré.</p>}
